@@ -1,0 +1,17 @@
+<table class="w-100 table mb-0">
+    <thead>
+        <tr>
+            <th><u (click)="sortLocation()"><b style="margin-left: 270px">Location</b></u></th>
+            <th><u (click)="sortName()"><b style="margin-left: 10px">Reported By</b></u></th>
+            <th><u (click)="sortTime()"><b style="margin-left: 80px">Time Reported</b></u></th>
+            <th><u (click)="sortStatus()"><b style="margin-right: 430px; margin-left: 50px">Status</b></u></th>
+        <tr>
+    </thead>
+</table>
+
+<app-table-item *ngFor="let report of reports" 
+[report] = "report" 
+(onDeleteReport)="deleteReport(report)"
+(onUpdateStatus)="updateStatus(report)"
+></app-table-item>
+

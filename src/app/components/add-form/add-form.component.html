@@ -1,0 +1,66 @@
+<form 
+    [formGroup]="form"
+    class = "container w-50 border border-dark border-3 mt-5"
+    (ngSubmit)="onSubmit()"
+>  
+    <fieldset>
+        <div class="form-group">
+            <label for="name" class="form-label">Name: </label>
+            <input id="name" type="text" formControlName="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="number" class="form-label">Phone Number: </label>
+            <input id="number" type="text" formControlName="number" class="form-control"> 
+        </div>
+        <div class="form-group">
+            <label for="pid" class="form-label">PID: </label>
+            <input id="pid" type="number" formControlName="pid" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="breed" class="form-label">Breed: </label>
+            <div class="dropdown">
+                <select 
+                class="btn btn-outline-dark dropdown-toggle"
+                formControlName="breed"
+                >
+                    <option *ngFor="let breed of Breed" [ngValue]="breed">
+                        {{breed}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <p> Enter New Location: <input type="checkbox" formControlName="enterLocation"></p>
+        </div>
+        <div *ngIf="!this.form.get('enterLocation').value" class="form-group">
+            <label for="location" class="form-label">Select Location: </label>
+            <div class="dropdown">
+                <select 
+                class="btn btn-outline-dark dropdown-toggle"
+                formControlName="location"
+                >
+                    <option *ngFor="let location of Location" [ngValue]="location">
+                        {{location}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="this.form.get('enterLocation').value" class="form-group">
+            <label for="location" class="form-label">Location: </label>
+            <input id="location" type="text" formControlName="location" class="form-control">
+            <label for="long" class="form-label">Longitude: </label>
+            <input id="long" type="number" formControlName="long" class="form-control">
+            <label for="lat" class="form-label">Latitude: </label>
+            <input id="lat" type="number" formControlName="lat" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="notes" class="form-label">notes </label>
+            <input id="notes" type="text" formControlName="notes" class="form-control">
+        </div>
+        <div class="form-group mt-3 mb-3">
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+            <a routerLink="/"><button class="btn btn-danger ms-3" type="button">Back</button></a>
+        </div>
+    </fieldset> 
+</form>
+
